@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'Ed_app/base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% block body_block %}
+    <div>
+        {% if registered %}
+        <a href="Ed_app/base.html"></a>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+
+        <h1>Fill out this form, {{user.first_name}} {{user.last_name}}</h1>
+
+        <form enctype="multipart/form-data", method="post">
+            {{ course_form.as_p }}
+            {% csrf_token %}
+            <input type="submit" name="" id="Register">
+        </form>
+
+        {% else %}
+        <h1>Как ты сюда попал?</h1>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>

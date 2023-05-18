@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nawbar_list">
+                {% if user.is_authenticated %}
+                <h1>
+                    Hello, {{user.first_name}} {{user.last_name}}  
+                </h1>  
+                <li class="nawbar_link"><a href="{%  url 'index' %}">Home</a></li>
+                <li class="nawbar_link"><a href="{%  url 'admin:index' %}">Admin</a></li>
+                <li class="nawbar_link"><a href="{% url 'logout' %}">Logout</a></li>
+                <li class="nawbar_link"><a href="{% url 'Ed_app:course_registration' %}">Course_register</a></li>
+
+                {% else %}
+                <li class="nawbar_link"><a href="{%  url 'index' %}">Home</a></li>
+                <li class="nawbar_link"><a href="{%  url 'admin:index' %}">Admin</a></li>
+                <li class="nawbar_link"><a href="{% url 'Ed_app:user_registration' %}">User_register</a></li>
+                <li class="nawbar_link"><a href="{% url 'Ed_app:login' %}">Login</a></li>
+                
+                {% endif %}
+            </ul>
+        </div>
+    <div class="container">
+        {% block body_block %}
+        {% endblock %}
+    </div>
+    </nav>
+</body>
+</html>
